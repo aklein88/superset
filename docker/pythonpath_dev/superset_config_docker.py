@@ -11,6 +11,10 @@ HTML_SANITIZATION_SCHEMA_EXTENSIONS = {
   "tagNames": ["style"],
 }
 
+SUPERSET_APP_ROOT = '/analytics'
+APPLICATION_ROOT = '/analytics'
+STATIC_ASSETS_PREFIX = '/analytics'
+
 # Translations
 BABEL_DEFAULT_LOCALE = 'fr'
 BABEL_DEFAULT_FOLDER = 'superset/translations'
