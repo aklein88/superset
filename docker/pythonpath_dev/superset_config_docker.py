@@ -13,7 +13,7 @@ HTML_SANITIZATION_SCHEMA_EXTENSIONS = {
 
 GLOBAL_ASYNC_QUERIES = True
 GLOBAL_ASYNC_QUERIES_TRANSPORT = "ws"
-GLOBAL_ASYNC_QUERIES_WEBSOCKET_URL = "ws://my.domain.com/ws:8080/" # use wss protocol (wss:) for SSL connection
+GLOBAL_ASYNC_QUERIES_WEBSOCKET_URL = "ws://my.domain.com/ws" # use wss protocol (wss:) for SSL connection
 GLOBAL_ASYNC_QUERIES_JWT_SECRET = "YOUR_CUSTOM_JWT_SECRET"
 GLOBAL_ASYNC_QUERIES_JWT_COOKIE_NAME = "async-token"
 
