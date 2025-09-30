@@ -17,6 +17,64 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+# Superset fork by Tone
+Apache Superset fork with production compose configuration
+- Using websocket
+- Not using specific container to build frontend asset
+
+## Quick start
+
+### Configure docker/.env-local
+Define your own environment configuration : 
+- SUPERSET_SECRET_KEY : Generate custom key with command `openssl rand -base64 42`
+- JWT_SECRET : Generate custom key with command `openssl rand -base64 42`
+- MAPBOX_API_KEY : Get key from mapbox if you use map charts
+
+### Configure docker/pythonpath_dev/superset_config_docker.py
+- GLOBAL_ASYNC_QUERIES_WEBSOCKET_URL : define url to websocket upstream (not localhost or 127.0.0.1)
+- GLOBAL_ASYNC_QUERIES_JWT_SECRET : Use the same key as JWT_SECRET in .env-local
+
+### Use nvm
+nvm configuration : 
+- node version : 20
+- npm version : 10
+
+Install nvm with this command : 
+```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash```
+
+Install node version 20 : 
+```nvm install 20```
+
+Check version : 
+- Node version : `nvm version`
+- npm version : `npm -version`
+
+### Install dependencies
+go to superset-frontend folder : 
+```cd superset-frontend```
+
+Install dependencies from `package-lock.json` : 
+```npm ci```
+
+### Build assets
+In superset-frontend folder : 
+```npm run build```
+
+### Build and start superset
+In Superset root folder, there is a script named superset.sh that simplifies the management of the containers.
+
+##### Build the server
+```./superset.sh build```
+
+##### Start the server
+```./superset.sh start```
+
+##### Stop the server and remove containers
+```./superset.sh stop```
+
+##### Show logs
+```./superset.sh logs```
+
 # Superset
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/license/apache-2-0)
