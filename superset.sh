@@ -29,7 +29,7 @@ build() {
 
 init() {
     current_dir=$(dirname "$0")
-    sudo sh -c "cd $current_dir/superset-frontend && npm install && npm run dev"
+    sudo sh -c "cd $current_dir/superset-frontend && npm ci && npm run build"
 }
 
 reset() {
