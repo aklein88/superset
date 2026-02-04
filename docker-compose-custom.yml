@@ -58,7 +58,7 @@ services:
     env_file:
       - path: docker/.env # default
         required: true
-      - path: docker/.env-local # optional override
+      - path: docker/.env-local-websocket # optional override
         required: false
     image: postgres:16
     container_name: superset_db
@@ -73,7 +73,7 @@ services:
     env_file:
       - path: docker/.env # default
         required: true
-      - path: docker/.env-local # optional override
+      - path: docker/.env-local-websocket # optional override
         required: false
     build:
       <<: *common-build
@@ -135,7 +135,7 @@ services:
     env_file:
       - path: docker/.env # default
         required: true
-      - path: docker/.env-local # optional override
+      - path: docker/.env-local-websocket # optional override
         required: false
     depends_on:
       db:
@@ -157,7 +157,7 @@ services:
     env_file:
       - path: docker/.env # default
         required: true
-      - path: docker/.env-local # optional override
+      - path: docker/.env-local-websocket # optional override
         required: false
     environment:
       CELERYD_CONCURRENCY: 2
@@ -183,7 +183,7 @@ services:
     env_file:
       - path: docker/.env # default
         required: true
-      - path: docker/.env-local # optional override
+      - path: docker/.env-local-websocket # optional override
         required: false
     restart: unless-stopped
     depends_on:
@@ -201,7 +201,7 @@ services:
     env_file:
       - path: docker/.env # default
         required: true
-      - path: docker/.env-local # optional override
+      - path: docker/.env-local-websocket # optional override
         required: false
     profiles:
       - optional
