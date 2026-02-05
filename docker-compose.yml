@@ -38,7 +38,7 @@ x-common-build: &common-build
   context: .
   target: ${SUPERSET_BUILD_TARGET:-dev} # can use `dev` (default) or `lean`
   cache_from:
-    - apache/superset-cache:3.10-slim-trixie
+    - apache/superset-cache:3.10-slim-bookworm
   args:
     DEV_MODE: "true"
     INCLUDE_CHROMIUM: ${INCLUDE_CHROMIUM:-false}
@@ -47,23 +47,6 @@ x-common-build: &common-build
     LOAD_EXAMPLES_DUCKDB: ${LOAD_EXAMPLES_DUCKDB:-true}
 
 services:
-  nginx:
-    env_file:
-      - path: docker/.env # default
-        required: true
-      - path: docker/.env-local # optional override
-        required: false
-    image: nginx:latest
-    container_name: superset_nginx
-    restart: unless-stopped
-    ports:
-      - "80:80"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./docker/nginx/templates:/etc/nginx/templates:ro
-
   redis:
     image: redis:7
     container_name: superset_cache
@@ -167,35 +150,6 @@ services:
       SUPERSET__SQLALCHEMY_EXAMPLES_URI: "duckdb:////app/data/examples.duckdb"
     healthcheck:
       disable: true
-
-  superset-node:
-    build:
-      context: .
-      target: superset-node
-      args:
-        # This prevents building the frontend bundle since we'll mount local folder
-        # and build it on startup while firing docker-frontend.sh in dev mode, where
-        # it'll mount and watch local files and rebuild as you update them
-        DEV_MODE: "true"
-        BUILD_TRANSLATIONS: ${BUILD_TRANSLATIONS:-false}
-    environment:
-      # set this to false if you have perf issues running the npm i; npm run dev in-docker
-      # if you do so, you have to run this manually on the host, which should perform better!
-      BUILD_SUPERSET_FRONTEND_IN_DOCKER: true
-      NPM_RUN_PRUNE: false
-      SCARF_ANALYTICS: "${SCARF_ANALYTICS:-}"
-      # configuring the dev-server to use the host.docker.internal to connect to the backend
-      superset: "http://superset:8088"
-    ports:
-      - "127.0.0.1:9000:9000"  # exposing the dynamic webpack dev server
-    container_name: superset_node
-    command: ["/app/docker/docker-frontend.sh"]
-    env_file:
-      - path: docker/.env # default
-        required: true
-      - path: docker/.env-local # optional override
-        required: false
-    volumes: *superset-volumes
 
   superset-worker:
     build:

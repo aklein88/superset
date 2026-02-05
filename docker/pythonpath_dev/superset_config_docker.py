@@ -9,4 +9,8 @@ HTML_SANITIZATION_SCHEMA_EXTENSIONS = {
     "*": ["style", "className", "class"],
   },
   "tagNames": ["style"],
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

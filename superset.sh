@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#compose_file="docker-compose.yml"
-compose_file="docker-compose-custom.yml"
+compose_file="docker-compose.yml"
 #compose_file="docker-compose-non-dev.yml"
 #compose_file="docker-compose-image-tag-custom.yml"
 #compose_file="docker-compose-build.yml"
