@@ -60,7 +60,7 @@ superset/bin/supersetc
 tmp
 rat-results.txt
 superset/app/
-superset-websocket/config.json
+#superset-websocket/config.json
 .direnv
 
 # Node.js, webpack artifacts, storybook
