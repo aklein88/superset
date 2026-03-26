@@ -31,9 +31,9 @@ x-superset-volumes: &superset-volumes
   - ./superset:/app/superset
   - ./superset-core:/app/superset-core
   - ./superset-frontend:/app/superset-frontend
-  - superset_home:/app/superset_home
+  - home:/app/superset_home
   - ./tests:/app/tests
-  - superset_data:/app/data
+  - data:/app/data
 x-common-build: &common-build
   context: .
   target: ${SUPERSET_BUILD_TARGET:-dev} # can use `dev` (default) or `lean`
@@ -241,11 +241,11 @@ services:
       test: ["CMD-SHELL", "celery inspect ping -A superset.tasks.celery_app:app -d celery@$$HOSTNAME"]
 
 volumes:
-  superset_home:
+  home:
     external: false
   db_home:
     external: false
   redis:
     external: false
-  superset_data:
+  data:
     external: false

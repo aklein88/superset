@@ -11,6 +11,3 @@ HTML_SANITIZATION_SCHEMA_EXTENSIONS = {
   "tagNames": ["style"],
 }
 
-SUPERSET_APP_ROOT = '/superset'
-APPLICATION_ROOT = '/superset'
-STATIC_ASSETS_PREFIX = '/superset'

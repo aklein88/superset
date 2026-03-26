@@ -35,14 +35,8 @@ reset() {
     echo "Deleting Apache Superset volumes..."
     docker volume rm -f superset_db_home
     docker volume rm -f superset_redis
-    docker volume rm -f superset_superset_home
-}
-
-reset_test() {
-    echo "Deleting Apache Superset volumes..."
-    docker volume rm -f superset_db_home_test
-    docker volume rm -f superset_redis_test
-    docker volume rm -f superset_superset_home_test
+    docker volume rm -f superset_home
+    docker volume rm -f superset_data
 }
 
 strUsage="Usage: $0 {start|stop|logs|build|init}"
